@@ -16,9 +16,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python-pip \
     python-eventlet \
     python-lxml \
+    python-paramiko \
     python-msgpack \
  && rm -rf /var/lib/apt/lists/* \
  && git clone https://github.com/osrg/ryu.git /root/ryu \
+ && pip install -r ryu/tools/pip-requires -r ryu/tools/test-requires \
  && pip install /root/ryu \
  && chmod +x /root/ENTRYPOINT.sh
 
