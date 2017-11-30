@@ -27,7 +27,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zlib1g-dev \
  && rm -rf /var/lib/apt/lists/* \
  && git clone https://github.com/osrg/ryu.git /root/ryu \
- && pip install -r ryu/tools/pip-requires -r ryu/tools/test-requires \
+ && pip install \
+        -r ryu/tools/pip-requires \
+        -r ryu/tools/test-requires \
+        -r ryu/tools/optional-requires \
  && pip install /root/ryu \
  && apt-get purge -y \
     gcc \
