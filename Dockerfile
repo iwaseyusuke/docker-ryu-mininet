@@ -8,10 +8,7 @@ ARG user=iwaseyusuke
 USER root
 WORKDIR /root
 
-COPY ENTRYPOINT.sh /
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
     gcc \
     git \
     libffi-dev \
@@ -42,4 +39,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zlib1g-dev \
  && chmod +x /ENTRYPOINT.sh
 
-ENTRYPOINT ["/ENTRYPOINT.sh"]
+# Inherit ENTRYPOINT of the base image
+# ENTRYPOINT ["/ENTRYPOINT.sh"]
