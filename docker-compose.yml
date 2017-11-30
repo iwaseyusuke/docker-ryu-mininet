@@ -1,15 +1,28 @@
-version: '2'
+version: "3.4"
+
+x-default: &default
+  build:
+    context: .
+    args:
+      user: iwaseyusuke
+  image: iwaseyusuke/ryu-mininet
+  tty: true
+  privileged: true
+  network_mode: "bridge"
+  environment:
+   - DISPLAY
+  volumes:
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /lib/modules:/lib/modules
+
 services:
-  ryu-mininet:
-    build:
-      context: .
-      args:
-        user: iwaseyusuke
-    image: iwaseyusuke/ryu-mininet
-    tty: true
-    privileged: true
-    environment:
-     - DISPLAY
-    volumes:
-     - /tmp/.X11-unix:/tmp/.X11-unix
-     - /lib/modules:/lib/modules
+
+  node1:
+    <<: *default
+
+  node2:
+    <<: *default
+
+  node3:
+    <<: *default
+
